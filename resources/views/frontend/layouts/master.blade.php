@@ -15,7 +15,59 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('asset/css/shop-homepage.css') }}" rel="stylesheet">
-
+    <style>
+        p.itemlist {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 0;
+            text-align: right;
+            padding-right: 3px;
+        }
+        .list-group-item:hover {
+            z-index: 1;
+            text-decoration: none;
+            background: #f7f7f7;
+        }
+        .item-clearfix{
+            clear: both;
+            display: block;
+            padding: 2px;
+            min-height: 60px;
+            outline: none;
+            opacity: 1;
+            text-decoration: none;
+        }
+      .item-thumbnail {
+            display: inline-block;
+            float: left;
+            margin: 5px 10px 5px 0px;
+            text-align: center;
+            width: 70px;
+        }
+      .item-overhidden {
+            display: block;
+            overflow: hidden;
+        }
+        .item-title{
+            display: block;
+            color: #0288d1;
+            font-weight: bold;
+            font-size: 100%;
+            margin-top: 3px;
+        }
+        .item-description{
+            display: block;
+            margin-top: 5px;
+            color: #747474;
+        }
+        .item-price{
+            float: left;
+            margin-top: 6px;
+            color: #014e70;
+            font-weight: bold;
+            font-size: 115%;
+        }
+    </style>
 </head>
 
 <body>
@@ -67,7 +119,29 @@
 <!-- Bootstrap core JavaScript -->
 <script src="{{ asset('asset/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script>
+    $('#search').keyup(function () {
+        const  query = $(this).val();
+        if (query !=null)
+        {
+            const _token = $('input[name="_token"]').val();
+            $.ajax({
+                url:'{{ route('autocomplete.search') }}',
+                method:'POST',
+                data:{ query:query,_token:_token},
+                success:function (data) {
+                    $('#searchProduct').fadeIn();
+                    $('#searchProduct').html(data);
+                }
+            });
+        }
+        $(document).on('click', 'body', function(){
+            $('#searchProduct').val($(this).text());
+            $('#searchProduct').fadeOut();
+        });
 
+    })
+</script>
 </body>
 
 </html>

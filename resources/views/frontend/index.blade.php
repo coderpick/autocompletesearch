@@ -2,7 +2,7 @@
 
 @section('content')
 @include('frontend.layouts.header')
-    <div class="row">
+    <div class="row" style="position: relative">
         <div class="col-lg-3">
             <h2 class="my-4">Category</h2>
             <div class="list-group">
