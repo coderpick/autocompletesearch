@@ -17,4 +17,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/','ProductController@index')->name('home.page');
 Route::get('/product/{slug}','ProductController@productDetails')->name('product.details');
+Route::get('/category/{slug}','ProductController@categorySearch')->name('category.search');
 Route::post('/find/product','ProductController@autoComplete')->name('autocomplete.search');

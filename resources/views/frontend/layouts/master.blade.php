@@ -42,7 +42,7 @@
             float: left;
             margin: 5px 10px 5px 0px;
             text-align: center;
-            width: 70px;
+            width: 60px;
         }
       .item-overhidden {
             display: block;
